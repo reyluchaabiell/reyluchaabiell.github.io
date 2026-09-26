@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WRITEUPS - r3yshellz BLOG</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Menggunakan FontAwesome gratis untuk Ikon Menu & Sosial Media -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- LEFT NAVBAR STATIS -->
+    <aside class="sidebar">
+        <div class="profile-section">
+            <!-- Ganti src ini dengan nama file foto Anda nanti di folder src/img/ -->
+            <img src="/img/profile.png" alt="Profile Photo" class="profile-pic">
+            <p class="nickname">r3yshellz</p>
+            <p class="motto">"Hunt Logic, Not Luck"</p>
+        </div>
+        
+        <nav class="sidebar-nav" id="sidebar-nav">
+            <a href="/" class="nav-link"><i class="fa-solid fa-house"></i> HOMEPAGE</a>
+            <a href="/writeups" class="nav-link"><i class="fas fa-folder-open"></i> WRITEUPS</a>
+            <a href="/profile" class="nav-link"><i class="fas fa-user-shield"></i> PROFILE</a>
+        </nav>
+
+        <div class="social-icons">
+            <a href="https://github.com/reyluchaabiell" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/reylucha-biel/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.instagram.com/reylucha_biel/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="mailto:biellreyluchaa@gmail.com" title="Gmail"><i class="fas fa-envelope"></i></a>
+        </div>
+    </aside>
+
+    <!-- KONTEN KANAN -->
+    <main class="content-area">
+        <div class="content-inner">
+            <div class="page-header">
+    <h1>WRITEUPS</h1>
+    
+    <!-- BARIS FILTER & SEARCH -->
+    <div class="filter-bar">
+        <!-- Dropdown Kategori -->
+        <div class="filter-group">
+            <label for="category-filter" class="sr-only">Pilih Kategori</label>
+            <select id="category-filter" class="filter-select">
+                <option value="ALL">ALL CATEGORY</option>
+                <option value="WEB">WEB</option>
+                <option value="PWN">PWN</option>
+                <option value="FORENSICS">FORENSICS</option>
+                <option value="REPORT">REPORT</option>
+            </select>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="filter-group search-group">
+            <label for="search-input" class="sr-only">Cari Writeup</label>
+            <!-- Secure config: autocomplete off mencegah browser menyimpan data pencarian sensitif -->
+            <input type="text" id="search-input" class="filter-search" placeholder="Search by keywords..." autocomplete="off">
+            <i class="fas fa-search search-icon"></i>
+        </div>
+    </div>
+</div>
+
+<!-- CONTAINER KONTEN BOX -->
+<div class="recent-grid" id="writeups-container">
+    
+    <!-- Menyimpan data di atribut untuk dibaca JavaScript secara aman -->
+    <div class="card writeup-card" data-category="REPORT">
+        
+        <span class="category-badge">REPORT</span>
+        <h3>Hello World: This my new journey to reporting my own as a cybersecurity practitioner.</h3>
+        
+        <!-- Eleventy akan memuat 'description' dari front-matter Markdown Anda, jika tidak ada, gunakan teks default -->
+        <p class="highlight-text">
+            The first post on this blog. It discusses the background behind creating a static blog for CTF documentation and cybersecurity research.
+        </p>
+        
+        <div class="card-footer">
+            <span class="date-text"><i class="fas fa-calendar-alt"></i> Written On: 22 Sep 2026</span>
+            <!-- Tombol CTA Hover -->
+            <a href="/writeups/hello/" class="cta-button">Read Now &rarr;</a>
+        </div>
+        
+    </div>
+    
+</div>
+
+<!-- Pesan Jika Pencarian Tidak Ditemukan (Disembunyikan secara default) -->
+<div id="no-results" class="no-results-msg" style="display: none;">
+    <p><i class="fas fa-exclamation-circle"></i> Sorry, there are no write-ups that match your filters or keywords.</p>
+</div>
+        </div>
+        
+        <!-- FOOTER COPYRIGHT & DISCLAIMER -->
+        <footer class="main-footer">
+            <p style="margin-bottom: 50px; text-align: justify;"><strong style="color: red;">Disclaimer:</strong>  All information, techniques, and Proof of Concept (PoC) on this website are intended solely for educational and security research purposes. The author is not responsible for any misuse of this information.</p>
+            <hr style="color: #F4EB6C;">
+            <p style="margin-top: 10px;">&copy; 2026 Reylucha Biel / Cybersecurity Journey. All rights reserved.</p>
+        </footer>
+    </main>
+    <script src="/js/script.js" defer></script>
+</body>
+</html>

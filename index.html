@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOMEPAGE - r3yshellz BLOG</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Menggunakan FontAwesome gratis untuk Ikon Menu & Sosial Media -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- LEFT NAVBAR STATIS -->
+    <aside class="sidebar">
+        <div class="profile-section">
+            <!-- Ganti src ini dengan nama file foto Anda nanti di folder src/img/ -->
+            <img src="/img/profile.png" alt="Profile Photo" class="profile-pic">
+            <p class="nickname">r3yshellz</p>
+            <p class="motto">"Hunt Logic, Not Luck"</p>
+        </div>
+        
+        <nav class="sidebar-nav" id="sidebar-nav">
+            <a href="/" class="nav-link"><i class="fa-solid fa-house"></i> HOMEPAGE</a>
+            <a href="/writeups" class="nav-link"><i class="fas fa-folder-open"></i> WRITEUPS</a>
+            <a href="/profile" class="nav-link"><i class="fas fa-user-shield"></i> PROFILE</a>
+        </nav>
+
+        <div class="social-icons">
+            <a href="https://github.com/reyluchaabiell" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/reylucha-biel/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.instagram.com/reylucha_biel/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="mailto:biellreyluchaa@gmail.com" title="Gmail"><i class="fas fa-envelope"></i></a>
+        </div>
+    </aside>
+
+    <!-- KONTEN KANAN -->
+    <main class="content-area">
+        <div class="content-inner">
+            
+<!-- ==========================================
+     SECTION: RECENT WRITEUPS
+     ========================================== -->
+<h1><i class="fa-solid fa-file" style="margin-right: 10px;"></i>RECENT WRITEUPS</h1>
+<p style="margin-bottom: 2rem; font-size: 1.1rem; color: #555;">
+    These are my recent reports of my writeups
+</p>
+
+<!-- KOTAK KONTEN 1-4 -->
+<div class="recent-grid">
+  <!-- Gunakan sintaks 'reversed limit:4' bawaan Liquid -->
+  
+       <div class="card writeup-card" data-category="REPORT">
+        
+        <span class="category-badge">REPORT</span>
+        <h3>Hello World: This my new journey to reporting my own as a cybersecurity practitioner.</h3>
+        
+        <!-- Eleventy akan memuat 'description' dari front-matter Markdown Anda, jika tidak ada, gunakan teks default -->
+        <p class="highlight-text">
+            The first post on this blog. It discusses the background behind creating a static blog for CTF documentation and cybersecurity research.
+        </p>
+        
+        <div class="card-footer">
+            <span class="date-text"><i class="fas fa-calendar-alt"></i> Written On: 22 Sep 2026</span>
+            <!-- Tombol CTA Hover -->
+            <a href="/writeups/hello/" class="cta-button">Read Now &rarr;</a>
+        </div>
+        
+    </div>
+  
+</div>
+
+<!-- ==========================================
+     SECTION: CORE EXPERTISE
+     ========================================== -->
+<section class="expertise-section">
+    <h1><i class="fas fa-tools"></i> CORE EXPERTISE</h1>
+    <p class="section-desc">Current research focus areas and cybersecurity skills.</p>
+    
+    <div class="expertise-grid">
+        <!-- Card Web Security -->
+        <div class="expertise-card">
+            <i class="fas fa-globe expertise-icon"></i>
+            <h3>WEB</h3>
+            <span class="level-badge intermediate">Intermediate</span>
+            <p>Web application vulnerability exploration, OWASP Top 10 analysis, and bug bounty methodologies (SQLi, XSS, CSRF, SSRF, IDOR, etc.)</p>
+        </div>
+
+        <!-- Card Forensics -->
+        <div class="expertise-card">
+            <i class="fas fa-search expertise-icon"></i>
+            <h3>FORENSICS</h3>
+            <span class="level-badge beginner">Beginner</span>
+            <p>Understanding digital forensics, memory analysis, and the basics of threat hunting.</p>
+        </div>
+
+        <!-- Card PWN -->
+        <div class="expertise-card">
+            <i class="fas fa-microchip expertise-icon"></i>
+            <h3>PWN</h3>
+            <span class="level-badge beginner">Beginner</span>
+            <p>Learning low-level exploits, buffer overflows, memory structures, and basic reverse engineering.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ==========================================
+     SECTION: TIMELINE (CYBERSECURITY JOURNEY)
+     ========================================== -->
+<section class="timeline-section">
+    <h1><i class="fas fa-route"></i> TIMELINE</h1>
+    <p class="section-desc">A track record and achievements that continue to grow.</p>
+    
+    <div class="timeline-container">
+        <!-- Timeline 1 (Paling Atas / Terbaru) -->
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <span class="timeline-date">25 Sep 2026</span>
+                <h3>Creating and Launching a Personal Blog Website</h3>
+                <p>Building a self-managed documentation platform that I use to keep track of when I complete CTF challenges, conduct cybersecurity research, and hone my report-writing skills.</p>
+            </div>
+        </div>
+
+        <!-- Timeline 2 -->
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <span class="timeline-date">17 Sep 2026</span>
+                <h3>Holmes CTF 2026</h3>
+                <p>Participating in the first blue-team-style CTF competition organized by HTB</p>
+            </div>
+        </div>
+
+        <!-- Timeline 3 -->
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <span class="timeline-date">10 Sep 2026</span>
+                <h3>K17 CTF</h3>
+                <p>Participating in my first international 24-hour red team CTF competition.</p>
+            </div>
+        </div>
+
+        <!-- Timeline 4 -->
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <span class="timeline-date">28 Aug 2026</span>
+                <h3>COMPFEST CTF 18 Quals</h3>
+                <p>The second domestic CTF competition.</p>
+            </div>
+        </div>
+
+        <!-- Timeline 5 -->
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <span class="timeline-date">Jul 2026</span>
+                <h3>Cyber Breaker Competion</h3>
+                <p>The first competition in my CTF journey</p>
+            </div>
+        </div>
+
+        <!-- Timeline 6 -->
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <span class="timeline-date">May - Sep 2026</span>
+                <h3>HTB Season 11: Season of the Punk</h3>
+                <p>To study real-world cyber security exploitation techniques and also to fill my time on the weekends.</p>
+            </div>
+        </div>
+
+        <!-- Timeline 7 -->
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <span class="timeline-date">May 2026</span>
+                <h3>UNSIA CTF Bootcamp</h3>
+                <p>The CTF event that sparked my interest in participating in other CTF competitions and marked the turning point in my journey into red team activities.</p>
+            </div>
+        </div>
+
+        <!-- Timeline 8 -->
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <span class="timeline-date">Early 2025 – Early 2026</span>
+                <h3>Learning Fundamentals</h3>
+                <p>At that time, I was working on strengthening my fundamentals in cybersecurity; interestingly, back then I preferred to learn as part of the blue team.</p>
+            </div>
+        </div>
+    </div>
+</section>
+        </div>
+        
+        <!-- FOOTER COPYRIGHT & DISCLAIMER -->
+        <footer class="main-footer">
+            <p style="margin-bottom: 50px; text-align: justify;"><strong style="color: red;">Disclaimer:</strong>  All information, techniques, and Proof of Concept (PoC) on this website are intended solely for educational and security research purposes. The author is not responsible for any misuse of this information.</p>
+            <hr style="color: #F4EB6C;">
+            <p style="margin-top: 10px;">&copy; 2026 Reylucha Biel / Cybersecurity Journey. All rights reserved.</p>
+        </footer>
+    </main>
+    <script src="/js/script.js" defer></script>
+</body>
+</html>

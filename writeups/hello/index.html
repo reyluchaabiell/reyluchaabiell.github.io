@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World: This my new journey to reporting my own as a cybersecurity practitioner. - BLOG CYBERSECURITY</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="writeup-page">
+
+    <!-- TOP NAVBAR KHUSUS BACA -->
+    <nav class="top-navbar">
+        <div class="nav-brand">
+            <img src="/img/profile.png" alt="Profile" class="nav-profile-pic">
+            <span class="nav-motto">Hunt Logic, Not Luck</span>
+        </div>
+        <div class="nav-links">
+            <a href="/"><i class="fas fa-home"></i> Home</a>
+            <a href="/writeups"><i class="fas fa-folder-open"></i> Writeups</a>
+            <a href="/profile"><i class="fas fa-user-shield"></i> Profile</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION (HEADER) -->
+    <!-- Anda bisa mengganti background-image via CSS atau inline style jika ada gambar spesifik -->
+    <header class="writeup-hero">
+        <div class="hero-content">
+            <div class="hero-meta">
+                <span class="hero-category">REPORT</span>
+                <span class="hero-date"><i class="fas fa-calendar-alt"></i> 22 Sep 2026</span>
+            </div>
+            <h1 class="hero-title" style="color: white;">Hello World: This my new journey to reporting my own as a cybersecurity practitioner.</h1>
+            
+            <div class="hero-tags">
+                
+                    
+                
+                    
+                        <span class="tag-badge" style="color: var(--gold-yellow);"><i class="fas fa-hashtag"></i> writing</span>
+                    
+                
+                    
+                        <span class="tag-badge" style="color: var(--gold-yellow);"><i class="fas fa-hashtag"></i> opening</span>
+                    
+                
+                    
+                        <span class="tag-badge" style="color: var(--gold-yellow);"><i class="fas fa-hashtag"></i> report</span>
+                    
+                
+            </div>
+        </div>
+    </header>
+
+    <main class="writeup-container">
+        <!-- KOTAK TL;DR / SUMMARY -->
+        
+
+        <!-- ISI KONTEN MARKDOWN -->
+        <article class="writeup-content">
+            <h2>TL;DR</h2>
+<p>Writing good reports is one of the fundamental skills for a security analyst. I created this blog as a platform to document every finding, <em>malware</em> analysis, and CTF <em>write-up</em> I’ve completed.</p>
+<h2>1. RECON</h2>
+<p>In the <em>cybersecurity</em> industry, a public portfolio is far more valuable than mere claims of expertise. I identified the need for a <em>blogging</em> platform that is fast, secure (without a <em>database</em>), and easy to manage, much like a code repository.</p>
+<h2>2. PLANNED</h2>
+<p>The original plan was to use a standard GitHub repository. However, to give the site a professional look and improve <em>readability</em>, I decided to build a <em>Static Site Generator</em> (SSG) using Eleventy (11ty). The main content will be divided into specific categories: WEB, PWN, and FORENSICS.</p>
+<h2>3. EXECUTION</h2>
+<p>This site was built entirely using <em>vanilla</em> HTML, CSS, and JavaScript on the <em>client</em> side. The use of Markdown simplifies technical writing (such as embedding <em>log files</em> or lines of exploit code). The search feature (<em>live search</em>) is implemented directly in the user’s browser to prevent <em>Cross-Site Scripting</em> (XSS) vulnerabilities.</p>
+<h2>4. SUMMARY AND LESSON LEARNED</h2>
+<p>With the launch of this blog, my documentation infrastructure is now in place. An important lesson from this phase is that building something based on the <em>Secure by Design</em> principle (such as choosing a static website over a dynamic CMS) will significantly reduce maintenance time in the future.</p>
+<p><em>Hunt Logic, Not Luck.</em></p>
+
+        </article>
+        <!-- SECTION SHARE / BERBAGI KONTEN -->
+        <section class="share-section">
+            <div class="share-container">
+                <h3><i class="fas fa-share-alt"></i> Share This Write-up</h3>
+                <p>Found an interesting vulnerability or want to discuss it? Share this article with other security professionals:</p>
+                
+                <div class="share-buttons">
+                    <!-- Tombol Twitter / X -->
+                    <a href="https://twitter.com/intent/tweet?text=Hello%20World%3A%20This%20my%20new%20journey%20to%20reporting%20my%20own%20as%20a%20cybersecurity%20practitioner.&url=/writeups/hello/" target="_blank" rel="noopener noreferrer" class="share-btn twitter" title="Bagikan ke X (Twitter)">
+                        <i class="fab fa-x-twitter"></i> X (Twitter)
+                    </a>
+
+                    <!-- Tombol LinkedIn -->
+                    <a href="https://www.linkedin.com/sharing/share-offsite/?url=/writeups/hello/" target="_blank" rel="noopener noreferrer" class="share-btn linkedin" title="Bagikan ke LinkedIn">
+                        <i class="fab fa-linkedin-in"></i> LinkedIn
+                    </a>
+
+                    <!-- Tombol WhatsApp -->
+                    <a href="https://api.whatsapp.com/send?text=Hello%20World%3A%20This%20my%20new%20journey%20to%20reporting%20my%20own%20as%20a%20cybersecurity%20practitioner.%20-%20/writeups/hello/" target="_blank" rel="noopener noreferrer" class="share-btn whatsapp" title="Bagikan ke WhatsApp">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
+
+                    <!-- Tombol Copy Link Interaktif -->
+                    <button id="copy-link-btn" class="share-btn copy" onclick="copyToClipboard()">
+                        <i class="fas fa-link"></i> <span id="copy-text">Copy Link</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- SECTION REKOMENDASI TERKAIT -->
+    <aside class="related-section">
+        <div class="related-container">
+            <h2><i class="fas fa-link"></i> Related Content</h2>
+            <div class="recent-grid related-grid">
+                
+                    <!-- Filter: Kategori sama dan bukan artikel yang sedang dibaca -->
+                    
+                
+            </div>
+        </div>
+    </aside>
+
+    <!-- FOOTER -->
+    <footer class="writeup-footer">
+        <div class="social-icons">
+            <a href="https://github.com/reyluchaabiell" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/reylucha-biel/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.instagram.com/reylucha_biel/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="mailto:biellreyluchaa@gmail.com" title="Gmail"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p style="margin-bottom: 50px; text-align: justify;"><strong style="color: red;">Disclaimer:</strong>  All information, techniques, and Proof of Concept (PoC) on this website are intended solely for educational and security research purposes. The author is not responsible for any misuse of this information.</p>
+            <hr style="color: #F4EB6C;">
+            <p style="margin-top: 10px;">&copy; 2026 Reylucha Biel / Cybersecurity Journey. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+---
+layout: base.njk
+title: WRITEUPS
+---
+<div class="page-header">
+    <h1>WRITEUPS</h1>
+    
+    <!-- BARIS FILTER & SEARCH -->
+    <div class="filter-bar">
+        <!-- Dropdown Kategori -->
+        <div class="filter-group">
+            <label for="category-filter" class="sr-only">Pilih Kategori</label>
+            <select id="category-filter" class="filter-select">
+                <option value="ALL">ALL CATEGORY</option>
+                <option value="WEB">WEB</option>
+                <option value="PWN">PWN</option>
+                <option value="FORENSICS">FORENSICS</option>
+                <option value="REPORT">REPORT</option>
+            </select>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="filter-group search-group">
+            <label for="search-input" class="sr-only">Cari Writeup</label>
+            <!-- Secure config: autocomplete off mencegah browser menyimpan data pencarian sensitif -->
+            <input type="text" id="search-input" class="filter-search" placeholder="Search by keywords..." autocomplete="off">
+            <i class="fas fa-search search-icon"></i>
+        </div>
+    </div>
+</div>
+
+<!-- CONTAINER KONTEN BOX -->
+<div class="recent-grid" id="writeups-container">
+    {% for post in collections.writeups | reverse %}
+    <!-- Menyimpan data di atribut untuk dibaca JavaScript secara aman -->
+    <div class="card writeup-card" data-category="{{ post.data.category | upcase }}">
+        
+        <span class="category-badge">{{ post.data.category }}</span>
+        <h3>{{ post.data.title }}</h3>
+        
+        <!-- Eleventy akan memuat 'description' dari front-matter Markdown Anda, jika tidak ada, gunakan teks default -->
+        <p class="highlight-text">
+            {{ post.data.description | default: "A detailed technical analysis of the attack methodology, execution, and recommendations for security remediation and mitigation regarding these findings." }}
+        </p>
+        
+        <div class="card-footer">
+            <span class="date-text"><i class="fas fa-calendar-alt"></i> Written On: {{ post.date | tanggalIndo }}</span>
+            <!-- Tombol CTA Hover -->
+            <a href="{{ post.url }}" class="cta-button">Read Now &rarr;</a>
+        </div>
+        
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Pesan Jika Pencarian Tidak Ditemukan (Disembunyikan secara default) -->
+<div id="no-results" class="no-results-msg" style="display: none;">
+    <p><i class="fas fa-exclamation-circle"></i> Sorry, there are no write-ups that match your filters or keywords.</p>
+</div>

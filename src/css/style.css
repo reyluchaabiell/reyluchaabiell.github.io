@@ -1,0 +1,1691 @@
+/* Deklarasi Variabel Warna Anda */
+:root {
+    --primary-blue: #006199;
+    --light-blue: #8ACFF8;
+    --light-yellow: #F4EB6C;
+    --gold-yellow: #FFD444;
+    --bg-content: #f4f6f9; /* Abu-abu sangat terang agar teks mudah dibaca */
+    --text-dark: #333333;
+    --text-light: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    display: flex;
+    background-color: var(--bg-content);
+    color: var(--text-dark);
+}
+
+/* --- SIDEBAR KIRI STATIS --- */
+.sidebar {
+    width: 280px;
+    height: 100vh; /* Tinggi penuh layar */
+    background-color: var(--primary-blue); /* Warna utama */
+    position: fixed; /* Membuatnya statis (tidak ikut ter-scroll) */
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 1.5rem;
+    color: var(--text-light);
+    box-shadow: 4px 0 10px rgba(0,0,0,0.1);
+    z-index: 100;
+}
+
+/* Profil & Moto */
+.profile-section {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.profile-pic {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    border: 4px solid var(--light-blue);
+    object-fit: cover;
+    margin-bottom: 1rem;
+    background-color: var(--light-blue); /* Fallback jika foto belum ada */
+}
+
+.motto {
+    font-style: italic;
+    color: var(--gold-yellow);
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+}
+
+/* Menu Navigasi */
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    flex-grow: 1; /* Mendorong ikon sosial media ke bawah */
+    margin-top: 1rem;
+}
+
+.nav-link {
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 12px 15px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Efek Hover Kursor */
+.nav-link:hover {
+    background-color: var(--light-blue);
+    color: var(--primary-blue);
+    transform: translateX(8px); /* Efek bergeser ke kanan sedikit */
+    border-left: 5px solid var(--gold-yellow);
+}
+
+/* Ikon Sosial Media */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.social-icons a {
+    color: var(--light-blue);
+    font-size: 1.6rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: var(--gold-yellow);
+    transform: scale(1.2);
+}
+
+/* --- AREA KONTEN KANAN --- */
+.content-area {
+    margin-left: 280px; /* Lebarnya harus sama dengan sidebar */
+    width: calc(100% - 280px);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.content-inner {
+    padding: 3rem;
+    flex-grow: 1; /* Memastikan footer selalu di paling bawah */
+}
+
+h1 {
+    color: var(--primary-blue);
+    margin-bottom: 2rem;
+    border-bottom: 4px solid var(--gold-yellow);
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+/* Styling Kotak (Card) untuk Homepage */
+.recent-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    border-left: 5px solid var(--primary-blue);
+    transition: transform 0.3s ease;
+}
+
+.card h3 {
+    color: var(--primary-blue);
+    margin: 10px 0;
+}
+
+.category-badge {
+    background-color: var(--light-yellow);
+    color: var(--primary-blue);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    width: fit-content;
+    align-self: flex-start;
+}
+
+/* --- FOOTER --- */
+.main-footer {
+    background-color: white;
+    padding: 2rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #666;
+    border-top: 1px solid #ddd;
+}
+.main-footer p {
+    margin-bottom: 8px;
+}
+
+/* --- RESPONSIVE DESIGN (MOBILE & TABLET) --- */
+@media screen and (max-width: 768px) {
+    /* Mengubah arah layout: Sidebar di atas, Konten di bawah */
+    body {
+        flex-direction: column;
+    }
+
+    /* Sidebar tidak lagi menempel (fixed) melainkan mengikuti scroll */
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto; /* Tinggi menyesuaikan isi, tidak lagi 100vh */
+        padding: 1.5rem;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    /* Memperkecil foto profil sedikit agar tidak makan tempat di HP */
+    .profile-pic {
+        width: 100px;
+        height: 100px;
+    }
+
+    /* Menu navigasi diubah menjadi menyamping (horizontal/wrap) */
+    .sidebar-nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 1rem;
+    }
+
+    .nav-link {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+    }
+
+    /* Menghapus efek bergeser ke kanan saat di hover di layar sentuh */
+    .nav-link:hover {
+        transform: none; 
+    }
+
+    /* Area konten ditarik kembali agar memenuhi lebar layar HP */
+    .content-area {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    /* Mengurangi jarak (padding) agar ruang baca artikel lebih luas di HP */
+    .content-inner {
+        padding: 1.5rem;
+    }
+
+    /* Memaksa kotak/card menjadi 1 kolom penuh di layar HP */
+    .recent-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .search-group { width: 100%; }
+
+    .profile-hero {
+        padding: 1rem; /* Mengurangi padding di mobile */
+    }
+
+    .profile-container {
+        gap: 1.5rem; /* Mengurangi jarak antara foto dan terminal di mobile */
+        flex-direction: column; /* Memaksa susunan menjadi atas-bawah */
+    }
+
+    .profile-image-wrapper {
+        max-width: 200px; /* Mengecilkan ukuran foto maksimal di layar HP */
+    }
+
+    .terminal-body {
+        padding: 1.5rem; /* Mengurangi padding di dalam terminal untuk mobile */
+    }
+
+    .type-title { font-size: 1.8rem; } /* Mengecilkan ukuran font judul */
+    .type-nick { font-size: 1.2rem; }
+    .type-motto { font-size: 1rem; }
+    .type-summary { font-size: 0.9rem; }
+
+}
+
+/* Gaya untuk menu yang sedang aktif (halaman saat ini) */
+.nav-link.active {
+    background-color: var(--light-blue);
+    color: var(--primary-blue);
+    border-left: 5px solid var(--gold-yellow);
+    transform: translateX(8px); /* Tetap bergeser agar terlihat menonjol */
+}
+
+/* Styling agar link tidak mengubah warna teks dan memenuhi area */
+.card-link {
+    text-decoration: none; /* Menghilangkan garis bawah link */
+    color: inherit; /* Mengikuti warna teks asli dari card */
+    display: block; /* Membuat link memenuhi seluruh kotak */
+}
+
+/* Memindahkan efek hover dari .card ke .card-link .card */
+.card-link:hover .card {
+    transform: translateY(-5px);
+    border-left-color: var(--gold-yellow);
+}
+
+/* --- FITUR FILTER & SEARCH KATEGORI --- */
+.page-header {
+    margin-bottom: 2rem;
+}
+
+.filter-bar {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.filter-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.filter-select {
+    padding: 10px 40px 10px 15px;
+    border: 2px solid var(--primary-blue);
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: white;
+    color: var(--primary-blue);
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    appearance: none; /* Merapikan dropdown bawaan browser */
+}
+
+/* Mengakali panah panah dropdown bawaan browser */
+.filter-group::after {
+    content: '\25BC';
+    position: absolute;
+    right: 15px;
+    color: var(--primary-blue);
+    font-size: 0.8rem;
+    pointer-events: none;
+}
+.search-group::after { display: none; } /* Matikan panah di search bar */
+
+.search-group {
+    flex-grow: 1; /* Search bar akan memenuhi sisa ruang kanan */
+}
+
+.filter-search {
+    width: 100%;
+    padding: 10px 15px 10px 40px;
+    border: 2px solid var(--primary-blue);
+    border-radius: 6px;
+    font-size: 1rem;
+    outline: none;
+    transition: box-shadow 0.3s ease;
+}
+
+.filter-search:focus {
+    box-shadow: 0 0 0 3px var(--light-blue);
+}
+
+.search-icon {
+    position: absolute;
+    left: 15px;
+    color: var(--primary-blue);
+}
+
+/* --- STYLING KHUSUS CARD WRITEUPS & CTA BUTTON --- */
+.writeup-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.highlight-text {
+    flex-grow: 1;
+    margin-top: 10px;
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px dashed #ddd;
+}
+
+.date-text {
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.cta-button {
+    background-color: var(--primary-blue);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: var(--gold-yellow);
+    color: var(--primary-blue);
+    transform: translateX(4px);
+}
+
+/* Aksesibilitas: Teks yang hanya dibaca oleh Screen Reader */
+.sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0;
+}
+
+/* Kelas yang disuntikkan JS untuk menyembunyikan elemen */
+.hidden { display: none !important; }
+
+.no-results-msg {
+    text-align: center; padding: 3rem 1rem; background: white; border-radius: 8px; border: 1px dashed #ccc; color: #666; font-size: 1.1rem;
+}
+
+/* ==========================================================================
+   LAYOUT KHUSUS WRITEUP (MEMBACA)
+   ========================================================================== */
+.writeup-page {
+    display: block; /* Menghapus efek flex dari sidebar lama */
+    background-color: var(--bg-content);
+}
+
+/* --- TOP NAVBAR --- */
+.top-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: var(--primary-blue);
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-profile-pic {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 2px solid var(--light-blue);
+}
+
+.nav-motto {
+    color: var(--gold-yellow);
+    font-weight: bold;
+    font-style: italic;
+    font-size: 1.1rem;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--gold-yellow);
+}
+
+/* --- HERO SECTION (HEADER GAMBAR & JUDUL) --- */
+.writeup-hero {
+    background: linear-gradient(135deg, #003b5c, var(--primary-blue));
+    color: white;
+    padding: 4rem 2rem 6rem 2rem; /* Padding bawah lebih besar untuk efek overlap TL;DR */
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.hero-meta {
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    color: var(--light-blue);
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    font-weight: bold;
+}
+
+.hero-category {
+    background-color: var(--gold-yellow);
+    color: var(--primary-blue);
+    padding: 2px 10px;
+    border-radius: 4px;
+}
+
+.hero-title {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+    border: none; /* Menghapus border bawah dari h1 global */
+}
+
+.hero-tags {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.tag-badge {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+}
+
+/* --- KOTAK TL;DR / EXECUTIVE SUMMARY --- */
+.writeup-container {
+    max-width: 800px; /* Lebar optimal untuk membaca panjang */
+    margin: 0 auto;
+    padding: 0 2rem 4rem 2rem;
+}
+
+.tldr-box {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    border-top: 5px solid var(--gold-yellow);
+    margin-top: -3.5rem; /* Efek overlapping dengan Hero Section */
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 10;
+}
+
+.tldr-box h3 {
+    color: var(--primary-blue);
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.tldr-box p {
+    color: #444;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* --- TYPOGRAPHY KONTEN MARKDOWN AGAR TIDAK MEMBOSANKAN --- */
+.writeup-content {
+    font-size: 1.125rem; /* Teks lebih besar sedikit dari standar */
+    line-height: 1.8; /* Ruang bernapas antar baris */
+    color: #333;
+}
+
+.writeup-content h2 {
+    color: var(--primary-blue);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--light-blue);
+    font-size: 1.7rem;
+}
+
+.writeup-content p {
+    margin-bottom: 1.5rem;
+}
+
+.writeup-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin: 1.5rem 0;
+}
+
+/* Keamanan & Aksesibilitas: Tampilan Blok Kode (CTF/Exploit) */
+.writeup-content pre {
+    background: #1e1e1e;
+    color: #d4d4d4;
+    padding: 1.5rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    border-left: 4px solid var(--gold-yellow);
+}
+
+.writeup-content code {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* --- REKOMENDASI TERKAIT & FOOTER --- */
+.related-section {
+    background: #e9ecef;
+    padding: 4rem 2rem;
+    margin-top: 2rem;
+}
+
+.related-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.related-container h2 {
+    text-align: center;
+    color: var(--primary-blue);
+    margin-bottom: 2rem;
+}
+
+/* Trik CSS: Menyembunyikan kartu ke-4 dan seterusnya agar mentok di 3 kartu */
+.related-grid .card-link:nth-child(n+4) {
+    display: none;
+}
+
+.writeup-footer {
+    background-color: white;
+    text-align: center;
+    padding: 3rem 2rem;
+    border-top: 1px solid #ddd;
+}
+
+.writeup-footer .social-icons {
+    margin-bottom: 1.5rem;
+}
+
+.writeup-footer .disclaimer {
+    color: #e74c3c; /* Merah kalem untuk menarik perhatian pada peringatan hukum */
+    font-size: 0.9rem;
+    max-width: 600px;
+    margin: 0 auto 1rem auto;
+}
+
+/* RESPONSIVE KHUSUS MOBILE */
+@media screen and (max-width: 768px) {
+    .nav-motto { display: none; } /* Sembunyikan moto di HP agar navbar tidak sesak */
+    .hero-title { font-size: 1.8rem; }
+    .writeup-hero { padding: 3rem 1rem 5rem 1rem; }
+    .writeup-container { padding: 0 1rem 2rem 1rem; }
+    .tldr-box { padding: 1.5rem; }
+}
+
+.nickname {
+    font-style: roboto;
+    color: whitesmoke;
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+}
+
+/* --- SHARE SECTION --- */
+.share-section {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+
+.share-container {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border-left: 5px solid var(--primary-blue);
+    text-align: center;
+}
+
+.share-container h3 {
+    color: var(--primary-blue);
+    margin-bottom: 8px;
+    font-size: 1.2rem;
+}
+
+.share-container p {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+}
+
+.share-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    color: white;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.share-btn:hover {
+    transform: translateY(-3px);
+    opacity: 0.9;
+}
+
+/* Warna Khas Platform */
+.share-btn.twitter { background-color: #000000; }
+.share-btn.linkedin { background-color: #0a66c2; }
+.share-btn.whatsapp { background-color: #25d366; }
+.share-btn.copy { background-color: var(--primary-blue); }
+
+/* ==========================================================================
+   HOMEPAGE: EXPERTISE & TIMELINE SECTION
+   ========================================================================== */
+
+/* Styling Header Section */
+.expertise-section, .timeline-section {
+    margin-top: 4rem;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+.expertise-section h2, .timeline-section h2 {
+    color: var(--primary-blue);
+    margin-bottom: 0.5rem;
+    border-bottom: 3px solid var(--gold-yellow);
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.section-desc {
+    color: #666;
+    margin-bottom: 2rem;
+    font-size: 1.05rem;
+}
+
+/* --- CORE EXPERTISE (GRID CARDS) --- */
+.expertise-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+}
+
+.expertise-card {
+    background: white;
+    padding: 2rem 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border-bottom: 4px solid var(--light-blue);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.expertise-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+    border-bottom-color: var(--primary-blue);
+}
+
+.expertise-icon {
+    font-size: 2.8rem;
+    color: var(--primary-blue);
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.expertise-card:hover .expertise-icon {
+    transform: scale(1.1);
+    color: var(--gold-yellow);
+}
+
+.level-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin: 0.5rem 0 1rem 0;
+    letter-spacing: 0.5px;
+}
+
+.level-badge.intermediate { 
+    background: var(--light-blue); 
+    color: var(--primary-blue); 
+}
+.level-badge.beginner { 
+    background: #e0e0e0; 
+    color: #555; 
+}
+
+.expertise-card p {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* --- TIMELINE SECTION --- */
+.timeline-container {
+    position: relative;
+    padding-left: 2.5rem; /* Memberi ruang untuk garis di kiri */
+    margin-top: 1rem;
+}
+
+/* Garis Vertikal Membentang */
+.timeline-container::before {
+    content: '';
+    position: absolute;
+    left: 7px; /* Menyesuaikan agar tepat di tengah titik */
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--light-blue);
+    border-radius: 2px;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 2.5rem;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+/* Titik-titik di Garis */
+.timeline-dot {
+    position: absolute;
+    left: -2.5rem;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    background: var(--gold-yellow);
+    border: 4px solid var(--primary-blue);
+    border-radius: 50%;
+    transition: transform 0.3s ease, background 0.3s ease;
+    z-index: 2; /* Agar titik berada di atas garis */
+}
+
+/* Interaksi Hover pada Titik */
+.timeline-item:hover .timeline-dot {
+    transform: scale(1.3);
+    background: white;
+}
+
+/* Kotak Konten Timeline */
+.timeline-content {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border-left: 4px solid var(--primary-blue);
+    transition: transform 0.3s ease;
+}
+
+/* Interaksi Hover pada Kotak: Bergeser ke Kanan */
+.timeline-content:hover {
+    transform: translateX(8px);
+    border-left-color: var(--gold-yellow);
+}
+
+.timeline-date {
+    display: inline-block;
+    background: var(--primary-blue);
+    color: var(--gold-yellow);
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.timeline-content h3 {
+    margin-bottom: 8px;
+    color: var(--primary-blue);
+    font-size: 1.2rem;
+}
+
+.timeline-content p {
+    color: #444;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Animasi Masuk Sederhana (Opsional) */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   PROFILE PAGE: HERO IDENTITY (GLITCH & TERMINAL)
+   ========================================================================== */
+.profile-hero {
+    /* Mengurangi padding atas (dari 4rem menjadi 1rem atau 0) agar konten naik */
+    padding: 0rem 2rem 4rem 2rem; 
+    min-height: calc(100vh - 80px);
+    display: flex;
+    align-items: flex-start; /* Mengubah dari 'center' ke 'flex-start' agar merapat ke atas */
+    background-color: var(--bg-content);
+}
+
+.profile-container {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 2.5rem; 
+    max-width: 950px; 
+    margin: 0 auto;
+    align-items: center; /* Menjaga foto dan terminal sejajar di desktop */
+    justify-content: center; 
+    width: 100%; /* Memastikan kontainer tidak melampaui lebar layar */
+}
+
+/* --- KIRI: FOTO & GLITCH --- */
+.profile-image-wrapper {
+    flex: 0 0 auto; 
+    width: 100%;
+    max-width: 300px; 
+    position: relative;
+}
+
+.glitch-img {
+    width: 100%;
+    /* Memastikan tinggi menyesuaikan proporsi lebar agar tidak distorsi */
+    height: auto; 
+    border-radius: 8px;
+    border: 3px solid var(--primary-blue);
+    box-shadow: 0 0 20px rgba(0, 97, 153, 0.3);
+    animation: cyberGlitch 5s infinite; 
+    display: block;
+}
+
+/* --- KANAN: TERMINAL WINDOW --- */
+.terminal-wrapper {
+    flex: 1 1 300px; /* Menurunkan basis flex dari 400px menjadi 300px agar lebih adaptif di layar sempit */
+    max-width: 580px; 
+    width: 100%; /* Memastikan terminal menyesuaikan lebar kontainer di mobile */
+    background-color: #121212;
+    border-radius: 8px;
+    border: 1px solid #333;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    overflow: hidden;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.terminal-header {
+    background-color: #2a2a2a;
+    padding: 12px 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid #111;
+}
+
+/* Tombol Mac OS Aesthetic di Terminal */
+.term-btn {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+}
+.term-btn.close { background: #ff5f56; }
+.term-btn.minimize { background: #ffbd2e; }
+.term-btn.expand { background: #27c93f; }
+
+.term-title {
+    margin-left: 10px;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+/* Hierarki Teks Terminal */
+.terminal-body {
+    padding: 2.5rem;
+}
+
+.type-title { color: white; font-size: 2.5rem; margin-bottom: 0.2rem; }
+.type-nick { color: var(--gold-yellow); font-size: 1.5rem; margin-bottom: 1rem; }
+.type-motto { color: #27c93f; font-size: 1.2rem; margin-bottom: 1.5rem; }
+.type-summary { color: #d4d4d4; font-size: 1.05rem; line-height: 1.7; }
+
+/* Kursor kotak berkedip khas Terminal */
+.terminal-cursor {
+    display: inline-block;
+    width: 12px;
+    height: 1.1em;
+    background-color: #27c93f;
+    vertical-align: middle;
+    margin-left: 4px;
+    animation: blinkCursor 1s step-end infinite;
+}
+
+@keyframes blinkCursor {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+
+/* ==========================================================================
+   PERBAIKAN: ANIMASI GLITCH & RESPONSIVITAS MOBILE
+   ========================================================================== */
+
+/* 1. MENGEMBALIKAN MESIN ANIMASI GLITCH YANG HILANG */
+@keyframes cyberGlitch {
+    0% { filter: none; transform: translate(0) }
+    20% { filter: none; transform: translate(0) }
+    21% { filter: contrast(150%) hue-rotate(90deg); transform: translate(-4px, 3px) skewX(-2deg); }
+    22% { filter: none; transform: translate(0) }
+    45% { filter: none; transform: translate(0) }
+    46% { filter: invert(20%) saturate(200%); transform: translate(4px, -3px) skewX(2deg); }
+    47% { filter: none; transform: translate(0) }
+    100% { filter: none; transform: translate(0) }
+}
+
+/* 2. MENCEGAH TEKS TERMINAL TUMPAH/KEPOTONG */
+.terminal-body {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* 3. MEMAKSA HIRARKI MOBILE KE POSISI PALING BAWAH */
+@media screen and (max-width: 768px) {
+    .profile-hero { 
+        padding: 1rem; 
+        align-items: center;
+    }
+    
+    .profile-container { 
+        gap: 1.5rem; 
+        flex-direction: column; 
+        width: 100%;
+    }
+    
+    .profile-image-wrapper { 
+        max-width: 200px; 
+        margin: 0 auto; 
+    }
+    
+    .terminal-wrapper { 
+        width: 100%; 
+        max-width: 100%; /* Memaksa terminal tidak melebihi layar HP */
+        flex: none; 
+        height: auto;
+    }
+    
+    .terminal-body { 
+        padding: 1.2rem; /* Ruang dalam terminal dikecilkan */
+    }
+    
+    /* Ukuran font dikecilkan agar muat di HP */
+    .type-title { font-size: 1.6rem; }
+    .type-nick { font-size: 1.2rem; }
+    .type-motto { font-size: 1rem; margin-bottom: 1rem; }
+    .type-summary { font-size: 0.85rem; line-height: 1.5; }
+}
+
+
+/* ==========================================================================
+   PROFILE PAGE: CTF STATS SECTION
+   ========================================================================== */
+.ctf-stats-section {
+    padding: 2rem 2rem 4rem 2rem;
+    max-width: 950px;
+    margin: 0 auto;
+}
+
+.stats-terminal {
+    background-color: #0d1117; /* Warna gelap khas GitHub/Terminal */
+    border-radius: 8px;
+    border: 1px solid #30363d;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    overflow: hidden;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.stats-body {
+    padding: 2rem;
+}
+
+/* Command Line Style */
+.command-line {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+.prompt { color: #27c93f; font-weight: bold; margin-right: 10px; }
+.command { color: white; }
+
+/* Loading Text */
+.loading-msg {
+    color: #8b949e;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    border-bottom: 1px dashed #30363d;
+    padding-bottom: 1.5rem;
+}
+
+/* Container untuk ke-2 Badge */
+.badges-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    animation: fadeInBadge 1s ease forwards;
+}
+
+.badge-box {
+    flex: 1 1 350px; /* Fleksibel membagi ruang, minimal lebar 350px */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #161b22;
+    padding: 1.5rem;
+    border-radius: 6px;
+    border: 1px solid #21262d;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.badge-box:hover {
+    transform: translateY(-5px);
+    border-color: #58a6ff;
+}
+
+.badge-title {
+    color: #8b949e;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    letter-spacing: 2px;
+}
+
+.live-badge {
+    max-width: 100%; /* Memastikan gambar tidak tumpah di HP */
+    height: auto;
+    border-radius: 4px;
+}
+
+@keyframes fadeInBadge {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsivitas Mobile untuk CTF Stats */
+@media screen and (max-width: 768px) {
+    .ctf-stats-section { padding: 1rem; }
+    .stats-body { padding: 1.5rem; }
+    .command-line { font-size: 0.9rem; }
+    .badge-box { flex: 1 1 100%; padding: 1rem; }
+}
+
+/* ==========================================================================
+   PERBAIKAN WHITESPACE PROFILE HERO
+   ========================================================================== */
+.profile-hero {
+    min-height: auto !important; /* Mematikan tinggi 100vh agar tidak ada ruang kosong */
+    padding-bottom: 2rem !important; 
+}
+.ctf-stats-section {
+    padding-top: 0 !important; /* Menarik terminal CTF merapat ke atas */
+}
+
+/* ==========================================================================
+   HACKER DASHBOARD UI (CTF STATS)
+   ========================================================================== */
+.hacker-dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    animation: fadeInBadge 1s ease forwards;
+}
+
+.stat-card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card.htb { border-top: 3px solid #9fef00; } /* Warna Hijau HTB */
+.stat-card.thm { border-top: 3px solid #ff1b1b; } /* Warna Merah THM */
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+
+.stat-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+}
+
+.stat-header i { font-size: 1.5rem; }
+.stat-card.htb .stat-header i { color: #9fef00; }
+.stat-card.thm .stat-header i { color: #ff1b1b; }
+
+/* Styling Baris Metrik Data */
+.metric-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px dashed #30363d;
+    font-family: 'Courier New', Courier, monospace;
+}
+.metric-row:last-child { border-bottom: none; }
+
+.metric-label {
+    color: #8b949e;
+    font-size: 0.95rem;
+}
+
+.metric-value {
+    color: #27c93f; /* Warna neon ala terminal */
+    font-weight: bold;
+    font-size: 1.05rem;
+    text-shadow: 0 0 5px rgba(39, 201, 63, 0.3);
+}
+
+.metric-value.highlight {
+    color: var(--gold-yellow);
+    text-shadow: 0 0 5px rgba(255, 212, 68, 0.4);
+}
+
+/* Fallback/Custom Badge untuk THM yang Sering Error */
+.custom-thm-badge {
+    background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+    border: 1px solid #444;
+    border-radius: 6px;
+    padding: 15px;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+.custom-thm-badge .top-rank {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: white;
+    margin: 0;
+}
+.custom-thm-badge .top-rank span { color: #ff1b1b; }
+
+/* ==========================================================================
+   PROFILE PAGE: THE ARSENAL SECTION (VERTICAL LIST)
+   ========================================================================== */
+.arsenal-section {
+    padding: 2rem 2rem 4rem 2rem;
+    max-width: 950px;
+    margin: 0 auto;
+}
+
+.arsenal-header-title {
+    margin-bottom: 2rem;
+    border-bottom: 1px dashed #30363d;
+    padding-bottom: 1rem;
+}
+
+.arsenal-header-title h2 {
+    color: var(--primary-blue);
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+    font-family: 'Courier New', Courier, monospace;
+    letter-spacing: -1px;
+}
+
+.arsenal-header-title p {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+/* Layout List Vertikal ke Bawah */
+.arsenal-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.arsenal-card {
+    background: #0d1117;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #30363d;
+}
+
+/* Warna Khas Tiap Kategori: Dipindah ke border kiri agar desainnya melebar */
+.web-card { border-left: 4px solid #00f0ff; }
+.pwn-card { border-left: 4px solid #ffea00; }
+.dfir-card { border-left: 4px solid #bc13fe; }
+
+.arsenal-card:hover { transform: translateX(8px); } /* Efek hover digeser ke kanan ala terminal */
+.web-card:hover { box-shadow: -5px 5px 15px rgba(0, 240, 255, 0.1); }
+.pwn-card:hover { box-shadow: -5px 5px 15px rgba(255, 234, 0, 0.1); }
+.dfir-card:hover { box-shadow: -5px 5px 15px rgba(188, 19, 254, 0.1); }
+
+/* Struktur Card Memanjang */
+.horizontal-card {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+.card-side-header {
+    background: #161b22;
+    flex: 0 0 220px; /* Lebar area header kiri */
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-right: 1px solid #30363d;
+}
+
+.card-side-header i {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.card-side-header h3 {
+    color: white;
+    font-size: 1.1rem;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.web-card .card-side-header i { color: #00f0ff; }
+.pwn-card .card-side-header i { color: #ffea00; }
+.dfir-card .card-side-header i { color: #bc13fe; }
+
+.arsenal-body {
+    flex: 1;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.arsenal-path {
+    color: #27c93f;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
+    margin-bottom: 1.2rem;
+}
+
+/* Styling Senjata (Tools) dengan Ikon */
+.tool-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.tool-badge {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #e6e6e6;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Teks lebih bersih untuk logo */
+    font-weight: 600;
+    transition: all 0.2s ease;
+    cursor: default;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; /* Jarak antara ikon dan teks */
+}
+
+/* Memperbesar ikon di dalam tool badge */
+.tool-badge i {
+    font-size: 1.1rem;
+}
+
+/* Efek Glow Spesifik Tiap Tool saat di-hover */
+.web-badge:hover { 
+    background: rgba(0, 240, 255, 0.1); border-color: #00f0ff; color: #00f0ff; 
+    text-shadow: 0 0 5px rgba(0, 240, 255, 0.5);
+}
+.pwn-badge:hover { 
+    background: rgba(255, 234, 0, 0.1); border-color: #ffea00; color: #ffea00; 
+    text-shadow: 0 0 5px rgba(255, 234, 0, 0.5);
+}
+.dfir-badge:hover { 
+    background: rgba(188, 19, 254, 0.1); border-color: #bc13fe; color: #bc13fe; 
+    text-shadow: 0 0 5px rgba(188, 19, 254, 0.5);
+}
+
+/* --- Responsivitas Mobile --- */
+@media screen and (max-width: 768px) {
+    .arsenal-section { padding: 1rem; }
+    
+    .horizontal-card {
+        flex-direction: column; /* Mengubah baris menjadi kolom di layar HP */
+    }
+    
+    .card-side-header {
+        flex: auto;
+        flex-direction: row;
+        padding: 1rem 1.5rem;
+        border-right: none;
+        border-bottom: 1px solid #30363d;
+        justify-content: flex-start;
+        gap: 15px;
+    }
+    
+    .card-side-header i {
+        margin-bottom: 0;
+        font-size: 1.8rem;
+    }
+    
+    .arsenal-body {
+        padding: 1.5rem;
+    }
+}
+
+
+/* ==========================================================================
+   PROFILE PAGE: MODULES (CERTS, CV, PGP, CTA)
+   ========================================================================== */
+.profile-module {
+    padding: 1rem 2rem 3rem 2rem;
+    max-width: 950px;
+    margin: 0 auto;
+}
+
+.module-header {
+    margin-bottom: 2rem;
+    border-bottom: 1px dashed #30363d;
+    padding-bottom: 1rem;
+}
+
+.module-header h2 {
+    color: var(--primary-blue);
+    font-size: 1.4rem;
+    margin-bottom: 5px;
+    font-family: 'Courier New', Courier, monospace;
+    letter-spacing: -0.5px;
+}
+
+.module-header p { color: #666; font-size: 0.95rem; }
+
+/* --- SECTION 4: CERTIFICATIONS --- */
+.cert-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.cert-card {
+    background: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 1.5rem;
+    display: flex;
+    gap: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cert-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    border-color: #58a6ff;
+}
+
+.cert-icon {
+    font-size: 2rem;
+    display: flex;
+    align-items: flex-start;
+}
+.thm-color { color: #ff1b1b; }
+.htb-color { color: #9fef00; }
+.bug-color { color: var(--gold-yellow); }
+
+.cert-info h4 {
+    color: white;
+    font-size: 1.05rem;
+    margin-bottom: 3px;
+}
+.cert-issuer {
+    display: block;
+    color: #8b949e;
+    font-size: 0.8rem;
+    font-family: 'Courier New', Courier, monospace;
+    margin-bottom: 10px;
+}
+.cert-info p {
+    color: #a5b2c0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* --- SECTION 5: TIMELINE CV --- */
+.cyber-timeline {
+    position: relative;
+    padding-left: 1.5rem;
+}
+.cyber-timeline::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: #30363d;
+}
+.cyber-timeline-item { position: relative; margin-bottom: 2rem; }
+.cyber-timeline-item:last-child { margin-bottom: 0; }
+
+.timeline-marker {
+    position: absolute;
+    left: -1.5rem;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    background: var(--gold-yellow);
+    border-radius: 50%;
+    transform: translateX(-4px); /* Centering over the line */
+    box-shadow: 0 0 10px rgba(255, 212, 68, 0.5);
+}
+
+.timeline-content {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: border-color 0.3s ease;
+}
+.timeline-content:hover { border-color: var(--primary-blue); }
+
+.time-stamp {
+    color: #27c93f;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.85rem;
+    font-weight: bold;
+    display: block; margin-bottom: 8px;
+}
+.timeline-content h4 { color: white; margin-bottom: 3px; }
+.role-location { display: block; color: #8b949e; font-size: 0.9rem; margin-bottom: 12px; }
+.timeline-content p { color: #d4d4d4; font-size: 0.95rem; line-height: 1.6; }
+
+/* --- SECTION 6: PGP KEY --- */
+.pgp-container {
+    background: #000;
+    border: 1px solid #333;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.pgp-toolbar {
+    background: #111;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #333;
+}
+.pgp-fingerprint {
+    color: #888;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.85rem;
+}
+.btn-copy-pgp {
+    background: var(--primary-blue);
+    color: white;
+    border: none;
+    padding: 5px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: background 0.3s ease;
+}
+.btn-copy-pgp:hover { background: var(--light-blue); color: var(--primary-blue); }
+
+.pgp-key-block {
+    padding: 1.5rem;
+    color: #27c93f; /* Terminal Green */
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.85rem;
+    overflow-x: auto;
+    margin: 0;
+}
+
+/* --- SECTION 7: CTA --- */
+.cta-box {
+    background: linear-gradient(135deg, #0a1017, #161b22);
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 3rem 2rem;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+.cta-box h2 {
+    color: white;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+.blink { animation: blinker 1.5s linear infinite; color: var(--gold-yellow); }
+@keyframes blinker { 50% { opacity: 0; } }
+
+.cta-box p {
+    color: #a5b2c0;
+    font-size: 1.05rem;
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+    line-height: 1.6;
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+.cyber-btn {
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-decoration: none;
+    font-family: 'Courier New', Courier, monospace;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+.cyber-btn.primary {
+    background: var(--primary-blue); color: white; border: 1px solid var(--primary-blue);
+}
+.cyber-btn.primary:hover {
+    background: transparent; color: var(--primary-blue); border-color: var(--primary-blue);
+}
+.cyber-btn.secondary {
+    background: transparent; color: var(--gold-yellow); border: 1px solid var(--gold-yellow);
+}
+.cyber-btn.secondary:hover {
+    background: var(--gold-yellow); color: #000;
+}
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media screen and (max-width: 768px) {
+    .profile-module { padding: 1rem; }
+    .cert-card { flex-direction: column; gap: 10px; }
+    .pgp-toolbar { flex-direction: column; gap: 10px; align-items: flex-start; }
+    .cta-buttons { flex-direction: column; }
+    .cyber-btn { justify-content: center; width: 100%; }
+}
+
+/* Modifikasi agar isi kartu penuh ke bawah */
+.cert-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.cert-info p {
+    color: #a5b2c0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    flex-grow: 1; /* Mendorong tombol tindakan selalu ke paling bawah */
+}
+
+/* Desain Tombol "View Cert" */
+.cert-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: auto;
+}
+
+.cert-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #d4d4d4;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    text-decoration: none;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.cert-btn:hover {
+    background: var(--primary-blue);
+    border-color: var(--primary-blue);
+    color: white;
+    transform: translateY(-2px); /* Sedikit efek lompat */
+    box-shadow: 0 4px 10px rgba(0, 97, 153, 0.3);
+}

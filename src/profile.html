@@ -1,0 +1,441 @@
+---
+layout: base.njk
+title: PROFILE
+---
+<!-- SECTION 1: HERO IDENTITY & PHILOSOPHY -->
+ 
+<section class="profile-hero">
+    <div class="profile-container">
+        <div class="arsenal-header-title" style="width: 100%; text-align: left;">
+            <h2><i class="fa-solid fa-circle-user"></i> system_modules // loaded_profile_summary</h2>
+        </div>
+        <!-- Kiri: Foto Formal dengan Efek Glitch -->
+        <div class="profile-image-wrapper">
+            <!-- PENTING: Ubah 'profile.png' dengan nama file foto asli Anda -->
+            <img src="{{ '/img/pp.png' | url }}" alt="Foto Formal Reylucha Biel" class="glitch-img">
+        </div>
+
+        <!-- Kanan: Terminal Text Box -->
+        <div class="terminal-wrapper">
+            <!-- Header Window Terminal -->
+            <div class="terminal-header">
+                <span class="term-btn close"></span>
+                <span class="term-btn minimize"></span>
+                <span class="term-btn expand"></span>
+                <span class="term-title">«(Yß3R»@r3yshellz: ~/identity</span>
+            </div>
+            
+            <!-- Body Terminal -->
+            <div class="terminal-body" id="terminal-body">
+                <h1 class="typing-text type-title">REYLUCHA BIEL</h1>
+                <h2 class="typing-text type-nick">nickname: [ r3yshellz ]</h2>
+                <h3 class="typing-text type-motto">motto: "Hunt Logic, Not Luck"</h3>
+                <p class="typing-text fast-type type-summary">
+                    Hey, this is your first chance to get to know me—nice to meet you! I always stick to logic and don’t rely on luck. I’ll be sharing updates on cybersecurity and my research findings in this field, with a focus on: WEB, FORENSICS, and PWN.
+                </p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- SECTION 2: CTF STATS COMMAND CENTER -->
+<section class="ctf-stats-section">
+    <div class="arsenal-header-title">
+        <h2><i class="fa-solid fa-chart-pie"></i> system_modules // loaded_ctf_stats</h2>
+    </div>
+    <div class="stats-terminal">
+        <!-- Header Terminal -->
+        <div class="terminal-header">
+            <span class="term-btn close"></span>
+            <span class="term-btn minimize"></span>
+            <span class="term-btn expand"></span>
+            <span class="term-title">«(Yß3R»@r3yshellz: ~/ctf_stats_monitor</span>
+        </div>
+        
+        <!-- Body Terminal -->
+        <div class="stats-body">
+            <!-- Simulasi Command Line -->
+            <div class="command-line">
+                <span class="prompt">«(Yß3R»@r3yshellz: ~/stats$</span>
+                <span class="command typing-cmd">./fetch_live_stats.sh --all</span>
+            </div>
+            
+            <div class="loading-msg hidden" id="stats-loading">
+                [+] Resolving HTB and THM API endpoints... <span style="color: #27c93f;">OK</span><br>
+                [+] Fetching latest pwned machines data... <span style="color: #27c93f;">OK</span>
+            </div>
+
+            <!-- Kontainer Badge (Tersembunyi sampai animasi selesai) -->
+            <div class="hacker-dashboard hidden" id="badges-display">
+                
+                <!-- KARTU HACKTHEBOX -->
+                <div class="stat-card htb">
+                    <div class="stat-header"><i class="fas fa-cube"></i> HACKTHEBOX</div>
+                    
+                    <!-- Dynamic Badge Resmi -->
+                    <img src="https://www.hackthebox.com/badge/image/2453865" alt="HTB Badge" class="live-badge" style="margin-bottom: 1.5rem;">
+                    
+                    <!-- Ekstraksi Metrik Elite -->
+                    <div class="metric-row">
+                        <span class="metric-label">Current Rank</span>
+                        <span class="metric-value highlight">PRO HACKER</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Experience Level</span>
+                        <span class="metric-value">Lvl 58 (Professional)</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Holo Tier Leaderboard</span>
+                        <span class="metric-value">#911</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Weekly Pwn Streak</span>
+                        <span class="metric-value">22 Weeks 🔥</span>
+                    </div>
+                </div>
+
+                <!-- KARTU TRYHACKME -->
+                <div class="stat-card thm">
+                    <div class="stat-header"><i class="fas fa-bug"></i> TRYHACKME</div>
+                    
+                    <!-- Custom Visual (Menggantikan image S3 yang sering error) -->
+                    <div class="custom-thm-badge">
+                        <p class="top-rank">TOP <span>1%</span></p>
+                        <p style="color: #888; font-size: 0.85rem; margin-top: 5px; font-family: monospace;">Global Ranking System</p>
+                    </div>
+
+                    <!-- Ekstraksi Metrik Elite -->
+                    <div class="metric-row">
+                        <span class="metric-label">Global Rank</span>
+                        <span class="metric-value highlight"><i class="fas fa-trophy"></i> 7782</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Completed Rooms</span>
+                        <span class="metric-value">311 Rooms</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Earned Badges</span>
+                        <span class="metric-value">40 Badges</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Account Status</span>
+                        <span class="metric-value" style="color: #44b5f6;">[0xE][GUARDIAN]</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 3: THE ARSENAL (WEAPONS & TOOLS STACK) -->
+<section class="arsenal-section">
+    <div class="arsenal-header-title">
+        <h2><i class="fas fa-terminal"></i> system_modules // loaded_arsenal</h2>
+    </div>
+
+    <!-- Diubah dari grid menjadi list vertikal -->
+    <div class="arsenal-list">
+        
+        <!-- KARTU WEB OFFENSIVE -->
+        <div class="arsenal-card horizontal-card web-card">
+            <div class="card-side-header">
+                <i class="fas fa-globe"></i>
+                <h3>WEB</h3>
+            </div>
+            <div class="arsenal-body">
+                <p class="arsenal-path">«(Yß3R»@r3yshellz:/opt/web# ls -la</p>
+                <div class="tool-tags">
+                    <span class="tool-badge web-badge"><i class="fas fa-spider"></i> Burp Suite</span>
+                    <span class="tool-badge web-badge"><i class="fas fa-bolt"></i> ZAPROXY</span>
+                    <span class="tool-badge web-badge"><i class="fas fa-database"></i> SQLmap</span>
+                    <span class="tool-badge web-badge"><i class="fas fa-terminal"></i> cURL</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- KARTU PWN & EXPLOIT -->
+        <div class="arsenal-card horizontal-card pwn-card">
+            <div class="card-side-header">
+                <i class="fas fa-microchip"></i>
+                <h3>PWN</h3>
+            </div>
+            <div class="arsenal-body">
+                <p class="arsenal-path">«(Yß3R»@r3yshellz:/opt/pwn# ls -la</p>
+                <div class="tool-tags">
+                    <span class="tool-badge pwn-badge"><i class="fas fa-bug"></i> GDB</span>
+                    <span class="tool-badge pwn-badge"><i class="fas fa-tools"></i> Pwntools</span>
+                    <span class="tool-badge pwn-badge"><i class="fab fa-python"></i> Python Scripts</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- KARTU FORENSICS -->
+        <div class="arsenal-card horizontal-card dfir-card">
+            <div class="card-side-header">
+                <i class="fas fa-search"></i>
+                <h3>FORENSICS</h3>
+            </div>
+            <div class="arsenal-body">
+                <p class="arsenal-path">«(Yß3R»@r3yshellz:/opt/dfir# ls -la</p>
+                <div class="tool-tags">
+                    <span class="tool-badge dfir-badge"><i class="fas fa-memory"></i> Volatility</span>
+                    <span class="tool-badge dfir-badge"><i class="fas fa-microscope"></i> Autopsy</span>
+                    <span class="tool-badge dfir-badge"><i class="fas fa-hdd"></i> FTK Imager</span>
+                    <span class="tool-badge dfir-badge"><i class="fas fa-network-wired"></i> Wireshark</span>
+                    <span class="tool-badge dfir-badge"><i class="fab fa-windows"></i> EZ Tools</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ==========================================
+     SECTION 4: CERTIFICATIONS & HALL OF FAME
+     ========================================== -->
+<section class="profile-module cert-section">
+    <div class="module-header">
+        <h2><i class="fas fa-certificate"></i> system_modules // loaded_certificates_hall_of_fame</h2>
+    </div>
+    
+    <div class="cert-grid">
+        
+        <!-- 1. HTB Holmes CTF (Paling Baru: Sep 2026) -->
+        <div class="cert-card">
+            <div class="cert-icon htb-color"><i class="fas fa-flag-checkered"></i></div>
+            <div class="cert-info">
+                <h4>HTB Holmes CTF 2026</h4>
+                <span class="cert-issuer">HackTheBox • Sep 2026</span>
+                <p>Competed with Team MEOWTAKU, snagging 30 flags and scoring 2,850 points to rank 601st out of 5,637 global teams. Elementary, my dear Watson!</p>
+                <div class="cert-actions">
+                    <a href="{{ '/certs/Certificate-r3yshellz.pdf' | url }}" target="_blank" class="cert-btn"><i class="fas fa-external-link-alt"></i> View Cert</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. CBD Regional CTF (May 2026) -->
+        <div class="cert-card">
+            <!-- Ikon biohazard dengan warna oranye menyala menyesuaikan tema logo CBD -->
+            <div class="cert-icon" style="color: #ff9800;"><i class="fas fa-biohazard"></i></div>
+            <div class="cert-info">
+                <h4>CBD Regional CTF 2026</h4>
+                <span class="cert-issuer">Cyber Breaker • May 2026</span>
+                <p>Broke the limits with Team MEOWTAKU! Secured an elite 7th place finish out of 306 teams in the highly competitive Jawa Regional.</p>
+                <div class="cert-actions">
+                    <a href="{{ '/certs/cbd.pdf' | url }}" target="_blank" class="cert-btn"><i class="fas fa-external-link-alt"></i> View Cert</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. UNSIA Bootcamp (Apr 2026) -->
+        <div class="cert-card">
+            <div class="cert-icon" style="color: #00f0ff;"><i class="fas fa-laptop-code"></i></div>
+            <div class="cert-info">
+                <h4>Tech-Rookie Bootcamp</h4>
+                <span class="cert-issuer">UNSIA Bali Festival • Apr 2026</span>
+                <p>Participated in "The Future Innovators" challenge. Proved that being a "rookie" is just a temporary state of mind.</p>
+                <div class="cert-actions">
+                    <!-- Ingat: Spasi pada nama file PDF otomatis dibaca browser, tapi disarankan nama file tidak pakai spasi (misal Sertifikat_Reylucha_Biel.pdf) -->
+                    <a href="{{ '/certs/Sertifikat Reylucha Biel.pdf' | url }}" target="_blank" class="cert-btn"><i class="fas fa-external-link-alt"></i> View Cert</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. THM Advent of Cyber (Dec 2025) -->
+        <div class="cert-card">
+            <div class="cert-icon thm-color"><i class="fas fa-snowflake"></i></div>
+            <div class="cert-info">
+                <h4>Advent of Cyber '25</h4>
+                <span class="cert-issuer">TryHackMe • Dec 2025</span>
+                <p>Successfully saved Christmas by crushing 24 daily cyber challenges without breaking a sweat.</p>
+                <div class="cert-actions">
+                    <a href="{{ '/certs/THM-AOC25.pdf' | url }}" target="_blank" class="cert-btn"><i class="fas fa-external-link-alt"></i> View Cert</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. THM SOC Analyst 1 & 2 (Aug - Oct 2025) -->
+        <div class="cert-card">
+            <div class="cert-icon thm-color"><i class="fas fa-shield-alt"></i></div>
+            <div class="cert-info">
+                <h4>SOC Analyst Level 1 & 2</h4>
+                <span class="cert-issuer">TryHackMe • Aug - Oct 2025</span>
+                <p>Survived over 150+ hours of rigorous defensive training. Got incident response, log analysis, and threat hunting down to a science.</p>
+                <div class="cert-actions">
+                    <a href="{{ '/certs/THM-86ZS4AOQJA.pdf' | url }}" target="_blank" class="cert-btn"><i class="fas fa-external-link-alt"></i> Lvl 1</a>
+                    <a href="{{ '/certs/THM-MCA52S2XIP.pdf' | url }}" target="_blank" class="cert-btn"><i class="fas fa-external-link-alt"></i> Lvl 2</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. THM Fundamentals (Aug 2025) -->
+        <div class="cert-card">
+            <div class="cert-icon thm-color"><i class="fas fa-user-ninja"></i></div>
+            <div class="cert-info">
+                <h4>Security Fundamentals</h4>
+                <span class="cert-issuer">TryHackMe • Aug 2025</span>
+                <p>Mastered the basics of network security, web vulnerabilities, and offensive methodologies across Pre-Security and Sec 101 paths.</p>
+                <div class="cert-actions">
+                    <a href="{{ '/certs/THM-WIEH6YQUXX.pdf' | url }}" target="_blank" class="cert-btn"><i class="fas fa-external-link-alt"></i> Pre-Sec</a>
+                    <a href="{{ '/certs/THM-895UXVGTJK.pdf' | url }}" target="_blank" class="cert-btn"><i class="fas fa-external-link-alt"></i> Sec 101</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7. ITBox Basic & Intermediate (May - Jun 2025) -->
+        <div class="cert-card">
+            <div class="cert-icon bug-color"><i class="fas fa-user-secret"></i></div>
+            <div class="cert-info">
+                <h4>Cyber Security (Basic & Mid)</h4>
+                <span class="cert-issuer">ITBOX • May - Jun 2025</span>
+                <p>Formalized the hacking mindset. Solidified foundational network security and advanced to intermediate exploitation techniques.</p>
+                <div class="cert-actions">
+                    <a href="{{ '/certs/reylucha.biel-Cyber-Security-Course-Level-Basic-ITBox-Certificate-ITBOX-by-Course-Net.pdf' | url }}" target="_blank" class="cert-btn"><i class="fas fa-external-link-alt"></i> Basic</a>
+                    <a href="{{ '/certs/reylucha.biel-Cyber-Security-Course-Level-Intermediate-ITBox-Certificate-ITBOX-by-Course-Net.pdf' | url }}" target="_blank" class="cert-btn"><i class="fas fa-external-link-alt"></i> Mid</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ==========================================
+     SECTION 5: STANDARD CV (EXECUTION LOGS)
+     ========================================== -->
+<section class="profile-module cv-section">
+    <div class="module-header">
+        <h2><i class="fas fa-history"></i> system_modules // loaded_resume</h2>
+    </div>
+    
+    <div class="cyber-timeline">
+        <!-- Log 1: CTF & Independent Learning (Paling Relevan Saat Ini) -->
+        <div class="cyber-timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+                <span class="time-stamp">[ 2026 - Present ]</span>
+                <h4>Current Student at Asia Cyber University & CTF Player</h4>
+                <span class="role-location">UNSIA Student • Indonesia and Independent Learner</span>
+                <p>Dedicated to continuous learning through practical exploitation on platforms like HackTheBox and TryHackMe. Actively participating in regional CTFs to sharpen real-world vulnerability assessment and teamwork skills. And I am a current Student majoring in Computer Science</p>
+            </div>
+        </div>
+
+        <!-- Log 2: Bootcamp & Sertifikasi -->
+        <div class="cyber-timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+                <span class="time-stamp">[ 2025 - 2026 ]</span>
+                <h4>Intensive Cybersecurity Training</h4>
+                <span class="role-location">ITBox / TryHackMe / UNSIA Bootcamp</span>
+                <p>Completed structured training programs covering network security, defensive operations (SOC), and intermediate web exploitation. Focused on transitioning theoretical concepts into hands-on technical skills.</p>
+            </div>
+        </div>
+
+        <!-- Log 3: Pendidikan Formal -->
+        <div class="cyber-timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+                <span class="time-stamp">[ 2021 - 2024 ]</span>
+                <h4>Graduating from Vocational High School </h4>
+                <!-- GANTI TEKS DI BAWAH DENGAN NAMA KAMPUS ASLI ANDA -->
+                <span class="role-location">SMK Plus Pelita Nusantara • Indonesia</span>
+                <p>I majored in Software Engineering and built a strong foundation in software engineering, operating systems, and network architectures. I believe in understanding how systems are built before attempting to break them.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==========================================
+     SECTION 6: PGP PUBLIC KEY (CYPHERPUNK VIBE)
+     ========================================== -->
+<section class="profile-module pgp-section">
+    <div class="module-header">
+        <h2><i class="fas fa-key"></i> system_modules // loaded_my_pgp</h2>
+    </div>
+    
+    <div class="pgp-container">
+        <div class="pgp-toolbar">
+            <!-- Fingerprint asli dari GPG Anda -->
+            <span class="pgp-fingerprint">Fingerprint: F50C 1DB1 7A21 ABCA 3804 EAA8 4D26 330A 3C94 B842</span>
+            <button class="btn-copy-pgp" onclick="copyPGPKey()">
+                <i class="fas fa-copy"></i> <span id="pgp-copy-text">Copy Key</span>
+            </button>
+        </div>
+        <!-- PGP Key block asli dari export GPG -->
+        <pre class="pgp-key-block" id="pgp-key-content">
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+mQINBGq3nz0BEAC6nO7UE2MfQI+jO1EGORxYk1Y4Ap3N4eXiOkKUX0IquoND90nI
+BbSHkW+yeCFY5SJT7M1rAlYv/MsTyS7+ASIplK+YXbc6uqqF1jYbH3YqxeaH9ksI
+9aVthn2pyobqf/9/llWRBathK6VIxZucRhGEsYSBStzGQoHNikkWxFXaAfnSD84W
+18LjxY5cFo5awWE9xV2Fpg3z9w2Z1CuXDLGwzzqcxyFU8l5DJLf0Va6rueldOyDW
+dRpR25xCbbNYgSdDvBIyreFKCWC3yMxDZ9nHWc6FdajUe3L5mXZDj+n/yvrdYbyw
+JKCManZe2rCUvdaZ1eGTfxcmbRtrkD4hdntkux8kl7y3BgmPe7BQl/pBngai4W3O
+MdWiwu6IRBDhka7FiT13mzOKhbDhtYe/W+YGaruu6sHv/rg5spJ3ApGmbbi0L8Z/
+ERDHavuoJp+wtXHe0h4855bXi8E+jDlcBRP0nnnACZAZnNbwnh1IfiFgx3S5I6gH
+ND1FPg4haZfZp/avYQeqQi26xckqEryMXGwWevDW5xUp7xfNdWxwyFHm1P5kY/np
+v1UYbdXCIBf2eJ/gWJtRvq8SHN9I3KMgS2Lpj0dPbQmK7hAQnGdxu0vfXUeHd0Ci
+QOPJfDkyaOlLm88BKnBUI5bGGZ2U4uTS3GyqfEtoynXLtb2VAUIib9CTzQARAQAB
+tEBSZXlsdWNoYSBCaWVsIChIYWkgTmljZSBUbyBNZWV0IFlvdSEpIDxiaWVsbHJl
+eWx1Y2hhYUBnbWFpbC5jb20+iQJRBBMBCgA7FiEE9QwdsXohq8o4BOqoTSYzCjyU
+uEIFAmq3nz0CGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQTSYzCjyU
+uEIyzRAAg33GHk/HgPHzM2Lo5/xt3BfqGHWztrral4zb/tquJ8HpQA4E4zGNs4YF
+klETf76aQeIaOl7XnSHbqoz6BlBiIkq0EjrEbznHAdzFzkaHGjhw3WSfnBeZnWkT
+QB3IfTp8jBnNPWcB1OiIGv7NsIpPXdxFvWiuVAVjpL6XCqeCv6XjrEL7qlikJ+ot
+M5UzvVBdkI1H+FUjdgrHlKfA81ME4eJRMJJjiYK/wk1fc+o9TYorpfu1S+lfu3OR
+0CePfFPFjfMBObcWVnDeatE4GppGZvEsCzmzHub+tCkh4LQ2IExXtofBGQUql6+f
+n4cLWTuOjn6V5ezU+BDOZQ8k/JCC2RfdpurHKNwH+lswuhDLBA92FLUd0YOUAbD0
+hrZ1AVYvgmzE8oqf1igbzTNzUdD322O4NisZZXDN2WwIzVAuM3kbuFno1JV08dcz
+gaXxX5CwRKaIQVB0cUDOSiFE42ElowHdoHSTjOhZuxjAgYyoYe2QH7IvB7Qp9uOC
+yRZirJYwNkNoLN/tqTqbFn5Ezz7sPL8uvvYLnNw9RcfJgYtmeOtzvQK+CkQi6R8P
+NTEGCwrttIrCeftdscMe7kxi9PcrflzJlrVX1Db4izyWJ2d3UXKr40E3CZSXq/7p
+b/WFvlrHc7KUaVv56cS2+gBZ0T4xO/bTi1DhjHnaCAMiGFzhSeu5Ag0EarefPQEQ
+AJ7co97eQJi7PyeoVVtwgOkvcM1/OHM6/sNxPnA2cXWuaCMYR+FFhwjY+kp+H+BO
+AoKd3Ldn+8lIHnUL9IOnMZRZLQjWpYzWk25G07BUSeuGRyynryHMLtfqU4Phm5o0
+asVnfN8AyMGp9aLxTAZv1u2fS0nc6Rh09bUoaYB1twaTpoO3xNx/4NEzOahkyJQB
+Jbdadz2Wmx5SoKzR/Vtz1Gk1phrPXAEXs8So1NRWWTP++p291NfqoaLSWc17IYGs
+WPfPlVCoOlz/08iUaXonAwBOpi87fu64vhPBFLfGKLhPhw+W66IwaTFQVXbg+lcC
+gCeAZl0TlmRByM3y6fz34abXUquio+iymmmtR7Fpb70vthDRQmZm98xmlWu3Ugua
+16uMTqlt1kjWAHUKhdmFlFDYZCm92cefE75oLKd92Bt7eX/wPrOQd9hmLtjxEktJ
+VaJyXfm1z9YlNTjuSoKr9FVonlijL3TrkWwOzrZTrMSRsXCQIUO/SMwGvQ3hGb/X
+Na45KfIE5chOjQJrhl6WcmdNmlEY5u1skX/dg0xA93Zoi3uEQlNDUgiqPD33/xGg
+ntxpH2iSp0cI1upBMR8LubBSJbMkFvejyf5sDlDn1dgdSWyHyGVe655GrxsZs1v9
+9I5ZX/JwugXkwimHQAjUvW4z5lwO5qb/cxmc9vfopxdhABEBAAGJAjYEGAEKACAW
+IQT1DB2xeiGryjgE6qhNJjMKPJS4QgUCarefPQIbDAAKCRBNJjMKPJS4QqNXD/4n
+K8HA2Ly+oikhXMEjWMoxiELYQmqiS2w6Z1+T7ggF/nUEqIgJxphxLHK16UnW6sS8
+ibItI0DW781kHn7bo15pppSWg3mqFCcDLBbh1oKZ28NqjFnFDh0kNyUD8XbAoTe8
+WBT3JyYGS7xeonuMIMln/wuYEBIh8tQxyb83fZbxgdpvYJTMQqZGjE6rByj/15lD
+T0IV+9Q9hZnhCZW3fKcY/oFcNoKGnANPPztRnsxV+PcX/T0huRRL7XN1uisK4cnU
+sbTYFpvymISHXAmEncORyZItKTKb66nwjoeXdu+FfRdKBwozPhrAUBpZtN1VUFMy
+mlIJ0L8ZahiG1DPsMfkcv8+JL3IWYJhvivPjOrSLgXNOAPv15eFTTefU2oZKAROf
+hykRswqykbTivWO9whetwl6KfQxQqXV+qjy9+6fwsZSlt0pSndsUYszTyGvjYAJV
+Eq4UBV+zB5cdcImYpzopt7Chiu4t5mecGms9TrLUEbnTgyHu95XBDqHwhJ9WgzJu
+aZ4rOx+3bJr/xKFis5ECujJwxcDBWLav6IosOB5jP/R5K3l0BZ/6kYIFwUBsta+A
+8zphYQIzMHfHBmU8kmcNa0e1CF/OFufRAzKlWWd3qs2wovWyt+n0OdfJhwc1RaWp
+e/V2iXejx7M/mV2V/EOXPGGw3yqRl/fwhvuCYKTDCQ==
+=yhnR
+-----END PGP PUBLIC KEY BLOCK-----</pre>
+    </div>
+</section>
+
+<!-- ==========================================
+     SECTION 7: CALL TO ACTION (INITIATE HANDSHAKE)
+     ========================================== -->
+<section class="profile-module cta-section">
+    <div class="cta-box">
+        <h2><i class="fas fa-satellite-dish blink"></i> Ready to Hack the Planet?</h2>
+        <p>Whether you need a dedicated CTF teammate, want to discuss a wild 0-day exploit, or have a cool professional opportunity in mind—I'm just a ping away.</p>
+        
+        <div class="cta-buttons">
+            <!-- Tombol Download PDF CV Anda (Pastikan file resume.pdf ada di folder src/) -->
+            <a href="/RESUME_REYLUCHA_BIEL.pdf" target="_blank" class="cyber-btn primary">
+                <i class="fas fa-file-pdf"></i> Download Resume
+            </a>
+            <!-- Tombol Email -->
+            <a href="mailto:biellreyluchaa@gmail.com" class="cyber-btn secondary">
+                <i class="fas fa-envelope"></i> Initiate Handshake
+            </a>
+        </div>
+    </div>
+</section>

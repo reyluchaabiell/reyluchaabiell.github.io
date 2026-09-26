@@ -1,10 +1,11 @@
 module.exports = function(eleventyConfig) {
-  // Menyuruh 11ty untuk menyalin folder css dan gambar langsung ke hasil akhir
-  eleventyConfig.addPassthroughCopy("src/css");
-  eleventyConfig.addPassthroughCopy("src/img");
-  eleventyConfig.addPassthroughCopy("src/js");
-  eleventyConfig.addPassthroughCopy("src/certs");
-
+  // Menggunakan Format Objek agar lokasi tujuan pasti akurat di GitHub Actions
+  eleventyConfig.addPassthroughCopy({
+    "src/css": "css",
+    "src/img": "img",
+    "src/js": "js",
+    "src/certs": "certs"
+  });
 
   eleventyConfig.addFilter("tanggalIndo", function(date) {
     return new Date(date).toLocaleDateString('id-ID', {
@@ -17,7 +18,7 @@ module.exports = function(eleventyConfig) {
   return {
     dir: {
       input: "src",      // Folder tempat Anda menulis kode & konten
-      output: "_site"    // Folder hasil akhir (otomatis dibuat oleh 11ty)
+      output: "_site"    // Folder hasil akhir
     }
   }
 };

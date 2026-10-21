@@ -1,157 +1,117 @@
-// 1. Ambil URL halaman saat ini
-const currentUrl = window.location.pathname;
+/* r3yshellz blog - vanilla JS, no dependencies.
+   Security: DOM text is only ever written via textContent / createTextNode (no innerHTML),
+   and there are no inline handlers, so a strict CSP (script-src 'self') works. */
+(() => {
+  'use strict';
 
-// 2. Ambil semua link di dalam nav
-const navLinks = document.querySelectorAll('.sidebar-nav a');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// 3. Cocokkan URL dan tambahkan class 'active'
-navLinks.forEach(link => {
-  const linkPath = new URL(link.href).pathname;
-  
-  // Normalisasi: Hapus garis miring di akhir (jika ada) agar pencocokan akurat
-  const normalizedCurrent = currentUrl.replace(/\/$/, '') || '/';
-  const normalizedLink = linkPath.replace(/\/$/, '') || '/';
-  
-  if (normalizedCurrent === normalizedLink) {
-    link.classList.add('active');
-  }
-});
+  /* ---------- 1. Writeups: category filter + live search ---------- */
+  const initFilter = () => {
+    const category = document.getElementById('category-filter');
+    const search = document.getElementById('search-input');
+    const container = document.getElementById('writeups-container');
+    if (!category || !search || !container) return;
 
-// --- FITUR FILTER & LIVE SEARCH (HALAMAN CATEGORY) ---
-const categoryFilter = document.getElementById('category-filter');
-const searchInput = document.getElementById('search-input');
-const writeupCards = document.querySelectorAll('.writeup-card');
-const noResultsMsg = document.getElementById('no-results');
+    const status = document.getElementById('results-status');
+    const empty = document.getElementById('no-results');
+    // Read the DOM once; filtering afterwards only toggles `hidden`.
+    const items = Array.from(container.querySelectorAll('.writeup-card'), el => ({
+      el,
+      category: (el.dataset.category || '').toUpperCase(),
+      text: el.textContent.toLowerCase().replace(/\s+/g, ' '),
+    }));
 
-// Blok if ini memastikan script hanya jalan jika kita sedang berada di halaman Category
-if (categoryFilter && searchInput) {
-    function filterCards() {
-        const selectedCategory = categoryFilter.value.toUpperCase();
-        // Lowercase & trim untuk sanitasi input pencarian
-        const searchQuery = searchInput.value.toLowerCase().trim();
-        let visibleCount = 0;
+    const apply = () => {
+      const wanted = category.value.toUpperCase();
+      const query = search.value.toLowerCase().trim();
+      let visible = 0;
+      for (const item of items) {
+        const show = (wanted === 'ALL' || item.category === wanted) && item.text.includes(query);
+        if (item.el.hidden === show) item.el.hidden = !show;   // touch DOM only on change
+        if (show) visible++;
+      }
+      empty.hidden = visible !== 0;
+      status.textContent = `${visible} of ${items.length} writeup${items.length === 1 ? '' : 's'} shown`;
+    };
 
-        writeupCards.forEach(card => {
-            const cardCategory = card.dataset.category || "";
-            // Mencari kecocokan kata dari seluruh isi teks di dalam kotak tersebut
-            const cardContent = card.textContent.toLowerCase(); 
+    category.addEventListener('change', apply);
+    search.addEventListener('input', apply);
+    apply();
+  };
 
-            // Logika Evaluasi: Apakah dropdown cocok? Dan apakah teks cocok?
-            const matchesCategory = (selectedCategory === "ALL" || cardCategory === selectedCategory);
-            const matchesSearch = cardContent.includes(searchQuery);
+  /* ---------- 2. Copy buttons: <button data-copy [data-copy-source="id"]> ---------- */
+  const initCopy = () => {
+    document.addEventListener('click', async (event) => {
+      const btn = event.target.closest('[data-copy]');
+      if (!btn) return;
 
-            if (matchesCategory && matchesSearch) {
-                card.classList.remove('hidden'); // Tampilkan
-                visibleCount++;
-            } else {
-                card.classList.add('hidden'); // Sembunyikan
-            }
-        });
+      const label = btn.querySelector('.copy-label');
+      const source = btn.dataset.copySource && document.getElementById(btn.dataset.copySource);
+      const text = source ? source.textContent.trim() : window.location.href;
 
-        // Jika perhitungan jumlah kotak yang tampil adalah 0, munculkan pesan peringatan
-        if (visibleCount === 0) {
-            noResultsMsg.style.display = 'block';
-        } else {
-            noResultsMsg.style.display = 'none';
-        }
-    }
-
-    // Pasang "pendengar" agar fungsi di atas dipanggil secara otomatis setiap ada perubahan
-    categoryFilter.addEventListener('change', filterCards);
-    searchInput.addEventListener('input', filterCards);
-}
-
-// --- FUNGSI COPY LINK SHARE ---
-function copyToClipboard() {
-    const currentUrl = window.location.href;
-    const copyTextSpan = document.getElementById('copy-text');
-    
-    navigator.clipboard.writeText(currentUrl).then(() => {
-        if (copyTextSpan) {
-            copyTextSpan.textContent = "Copied!";
-            setTimeout(() => {
-                copyTextSpan.textContent = "Copy Link";
-            }, 2000); // Mengembalikan teks semula setelah 2 detik
-        }
-    }).catch(err => {
-        console.error('Gagal menyalin tautan: ', err);
+      let message;
+      try {
+        await navigator.clipboard.writeText(text);
+        message = label.dataset.done || 'Copied!';
+      } catch {
+        message = 'Copy failed';
+      }
+      label.dataset.idle ||= label.textContent;
+      label.textContent = message;               // aria-live region announces it
+      clearTimeout(Number(btn.dataset.timer));
+      btn.dataset.timer = setTimeout(() => { label.textContent = label.dataset.idle; }, 2000);
     });
-}
+  };
 
-// === ANIMASI TERMINAL TYPING (HALAMAN PROFILE) ===
-async function initTerminalTyping() {
-    const elements = document.querySelectorAll('.typing-text');
-    if (elements.length === 0) return;
-
-    // 1. Simpan teks asli dan kosongkan isi elemen (untuk persiapan animasi)
-    const texts = [];
-    elements.forEach(el => {
-        texts.push(el.textContent.trim());
-        el.textContent = ''; 
-    });
-
-    // 2. Buat elemen kursor hijau kotak
+  /* ---------- 3. Terminal typing (profile hero) ----------
+     The full text stays in the DOM the whole time (screen readers read it immediately and the
+     layout never shifts); we only move a boundary between "typed" and "not yet typed" spans. */
+  const typeLine = (el, msPerChar, keepCursor) => new Promise((resolve) => {
+    const full = el.textContent.replace(/\s+/g, ' ').trim();
+    const typed = document.createElement('span');
+    const rest = document.createElement('span');
     const cursor = document.createElement('span');
+    rest.className = 'typing-rest';
     cursor.className = 'terminal-cursor';
+    cursor.setAttribute('aria-hidden', 'true');
+    rest.textContent = full;
+    el.textContent = '';
+    el.append(typed, cursor, rest);
 
-    // 3. Loop berantai: Ketik baris 1, lanjut baris 2, dst.
-    for (let i = 0; i < elements.length; i++) {
-        const el = elements[i];
-        const text = texts[i];
-        
-        // Atur kecepatan: paragraf summary (kelas fast-type) diketik lebih cepat (15ms)
-        const speed = el.classList.contains('fast-type') ? 15 : 60; 
+    let start = null;
+    let shown = 0;
+    const tick = (now) => {
+      start ??= now;
+      const n = Math.min(full.length, Math.floor((now - start) / msPerChar));
+      if (n !== shown) {
+        shown = n;
+        typed.textContent = full.slice(0, n);
+        rest.textContent = full.slice(n);
+      }
+      if (n < full.length) return requestAnimationFrame(tick);
+      if (!keepCursor) cursor.remove();
+      resolve();
+    };
+    requestAnimationFrame(tick);
+  });
 
-        el.appendChild(cursor); // Pindahkan kursor ke baris saat ini
-        
-        // Loop mengetik per karakter menggunakan textContent (Anti-XSS / Sangat Secure)
-        for (let j = 0; j < text.length; j++) {
-            cursor.insertAdjacentText('beforebegin', text.charAt(j));
-            await new Promise(r => setTimeout(r, speed));
-        }
-        
-        // Hapus kursor dari baris ini jika mau pindah ke baris bawahnya
-        if (i < elements.length - 1) {
-            el.removeChild(cursor);
-        }
+  const initTyping = async () => {
+    const lines = document.querySelectorAll('.typing-text');
+    if (prefersReducedMotion || lines.length === 0) return;
+    for (let i = 0; i < lines.length; i++) {
+      await typeLine(lines[i], Number(lines[i].dataset.speed) || 45, i === lines.length - 1);
     }
-}
+  };
 
-// Jalankan saat kerangka HTML sudah selesai dimuat browser
-document.addEventListener('DOMContentLoaded', initTerminalTyping);
-
-// === ANIMASI FETCHING CTF STATS ===
-document.addEventListener('DOMContentLoaded', () => {
-    const loadingMsg = document.getElementById('stats-loading');
-    const badgesDisplay = document.getElementById('badges-display');
-
-    if (loadingMsg && badgesDisplay) {
-        // Tampilkan teks loading dalam 1 detik
-        setTimeout(() => {
-            loadingMsg.classList.remove('hidden');
-        }, 1000);
-
-        // Munculkan gambar badge secara clean dalam 2.5 detik
-        setTimeout(() => {
-            badgesDisplay.classList.remove('hidden');
-        }, 2500);
-    }
-});
-
-// === FITUR COPY PGP PUBLIC KEY ===
-function copyPGPKey() {
-    const pgpContent = document.getElementById('pgp-key-content').textContent;
-    const copyTextBtn = document.getElementById('pgp-copy-text');
-    
-    navigator.clipboard.writeText(pgpContent).then(() => {
-        if (copyTextBtn) {
-            copyTextBtn.textContent = "Key Copied!";
-            // Reset teks setelah 2 detik
-            setTimeout(() => {
-                copyTextBtn.textContent = "Copy Key";
-            }, 2000);
-        }
-    }).catch(err => {
-        console.error('Gagal menyalin PGP Key: ', err);
+  /* ---------- 4. Keyboard access for scrollable code blocks ---------- */
+  const initCodeBlocks = () => {
+    document.querySelectorAll('.prose pre').forEach((pre) => {
+      if (pre.scrollWidth > pre.clientWidth) pre.tabIndex = 0;
     });
-}
+  };
+
+  const init = () => { initFilter(); initCopy(); initTyping(); initCodeBlocks(); };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();

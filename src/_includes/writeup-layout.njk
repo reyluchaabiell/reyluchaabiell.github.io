@@ -1,123 +1,59 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }} - BLOG CYBERSECURITY</title>
-    <link rel="stylesheet" href="{{ '/css/style.css' | url }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body class="writeup-page">
+---
+layout: base.njk
+bodyClass: writeup-page
+---
+{%- set shareUrl = (site.url or '') + (page.url | url) -%}
+{%- set related = collections.writeups | related(category, page.url) -%}
 
-    <!-- TOP NAVBAR KHUSUS BACA -->
-    <nav class="top-navbar">
-        <div class="nav-brand">
-            <img src="/img/profile.png" alt="Profile" class="nav-profile-pic">
-            <span class="nav-motto">Hunt Logic, Not Luck</span>
-        </div>
-        <div class="nav-links">
-            <a href="{{ '/' | url }}"><i class="fas fa-home"></i> Home</a>
-            <a href="{{ '/writeups' | url }}"><i class="fas fa-folder-open"></i> Writeups</a>
-            <a href="{{ '/profile' | url }}"><i class="fas fa-user-shield"></i> Profile</a>
-        </div>
-    </nav>
+<header class="writeup-hero">
+    <div class="hero-meta">
+        <span class="category-badge">{{ category }}</span>
+        <span class="date-text"><i class="fas fa-calendar-alt" aria-hidden="true"></i> <time datetime="{{ date | isoDate }}">{{ date | tanggalIndo }}</time></span>
+    </div>
+    <h1 class="hero-title glitch">{{ title }}</h1>
+    {% if tags %}
+    <ul class="tag-list" aria-label="Tags">
+        {% for tag in tags %}{% if tag != "writeups" %}
+        <li class="tag-badge"><i class="fas fa-hashtag" aria-hidden="true"></i> {{ tag }}</li>
+        {% endif %}{% endfor %}
+    </ul>
+    {% endif %}
+</header>
 
-    <!-- HERO SECTION (HEADER) -->
-    <!-- Anda bisa mengganti background-image via CSS atau inline style jika ada gambar spesifik -->
-    <header class="writeup-hero">
-        <div class="hero-content">
-            <div class="hero-meta">
-                <span class="hero-category">{{ category }}</span>
-                <span class="hero-date"><i class="fas fa-calendar-alt"></i> {{ date | tanggalIndo }}</span>
-            </div>
-            <h1 class="hero-title" style="color: white;">{{ title }}</h1>
-            
-            <div class="hero-tags">
-                {% for tag in tags %}
-                    {% if tag != "writeups" %}
-                        <span class="tag-badge" style="color: var(--gold-yellow);"><i class="fas fa-hashtag"></i> {{ tag }}</span>
-                    {% endif %}
-                {% endfor %}
-            </div>
-        </div>
-    </header>
+{% if tldr %}
+<aside class="tldr-box" aria-labelledby="tldr-title">
+    <h2 id="tldr-title"><i class="fas fa-bolt" aria-hidden="true"></i> TL;DR (Executive Summary)</h2>
+    <p>{{ tldr }}</p>
+</aside>
+{% endif %}
 
-    <main class="writeup-container">
-        <!-- KOTAK TL;DR / SUMMARY -->
-        {% if tldr %}
-        <div class="tldr-box">
-            <h3><i class="fas fa-bolt"></i> TL;DR (Executive Summary)</h3>
-            <p>{{ tldr }}</p>
-        </div>
-        {% endif %}
+<article class="writeup-content prose">
+    {{ content | safe }}
+</article>
 
-        <!-- ISI KONTEN MARKDOWN -->
-        <article class="writeup-content">
-            {{ content | safe }}
+<section class="share-section" aria-labelledby="share-title">
+    <h2 id="share-title"><i class="fas fa-share-alt" aria-hidden="true"></i> Share This Write-up</h2>
+    <p>Found an interesting vulnerability or want to discuss it? Share this article with other security professionals:</p>
+    <div class="share-buttons">
+        <a href="https://twitter.com/intent/tweet?text={{ title | urlencode }}&url={{ shareUrl | urlencode }}" target="_blank" rel="noopener noreferrer" class="btn share-btn twitter"><i class="fab fa-x-twitter" aria-hidden="true"></i> X (Twitter)<span class="sr-only"> (opens in new tab)</span></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ shareUrl | urlencode }}" target="_blank" rel="noopener noreferrer" class="btn share-btn linkedin"><i class="fab fa-linkedin-in" aria-hidden="true"></i> LinkedIn<span class="sr-only"> (opens in new tab)</span></a>
+        <a href="https://api.whatsapp.com/send?text={{ (title + ' - ' + shareUrl) | urlencode }}" target="_blank" rel="noopener noreferrer" class="btn share-btn whatsapp"><i class="fab fa-whatsapp" aria-hidden="true"></i> WhatsApp<span class="sr-only"> (opens in new tab)</span></a>
+        <button type="button" class="btn share-btn copy" data-copy>
+            <i class="fas fa-link" aria-hidden="true"></i> <span class="copy-label" data-done="Copied!" aria-live="polite">Copy Link</span>
+        </button>
+    </div>
+</section>
+
+{% if related.length %}
+<aside class="related-section" aria-labelledby="related-title">
+    <h2 id="related-title"><i class="fas fa-link" aria-hidden="true"></i> Related Content</h2>
+    <div class="card-grid">
+        {% for post in related %}
+        <article class="card">
+            <span class="category-badge">{{ post.data.category }}</span>
+            <h3><a class="card-link" href="{{ post.url | url }}">{{ post.data.title }}</a></h3>
         </article>
-        <!-- SECTION SHARE / BERBAGI KONTEN -->
-        <section class="share-section">
-            <div class="share-container">
-                <h3><i class="fas fa-share-alt"></i> Share This Write-up</h3>
-                <p>Found an interesting vulnerability or want to discuss it? Share this article with other security professionals:</p>
-                
-                <div class="share-buttons">
-                    <!-- Tombol Twitter / X -->
-                    <a href="https://twitter.com/intent/tweet?text={{ title | urlencode }}&url={{ page.url | url }}" target="_blank" rel="noopener noreferrer" class="share-btn twitter" title="Bagikan ke X (Twitter)">
-                        <i class="fab fa-x-twitter"></i> X (Twitter)
-                    </a>
-
-                    <!-- Tombol LinkedIn -->
-                    <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ page.url | url }}" target="_blank" rel="noopener noreferrer" class="share-btn linkedin" title="Bagikan ke LinkedIn">
-                        <i class="fab fa-linkedin-in"></i> LinkedIn
-                    </a>
-
-                    <!-- Tombol WhatsApp -->
-                    <a href="https://api.whatsapp.com/send?text={{ title | urlencode }}%20-%20{{ page.url | url }}" target="_blank" rel="noopener noreferrer" class="share-btn whatsapp" title="Bagikan ke WhatsApp">
-                        <i class="fab fa-whatsapp"></i> WhatsApp
-                    </a>
-
-                    <!-- Tombol Copy Link Interaktif -->
-                    <button id="copy-link-btn" class="share-btn copy" onclick="copyToClipboard()">
-                        <i class="fas fa-link"></i> <span id="copy-text">Copy Link</span>
-                    </button>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- SECTION REKOMENDASI TERKAIT -->
-    <aside class="related-section">
-        <div class="related-container">
-            <h2><i class="fas fa-link"></i> Related Content</h2>
-            <div class="recent-grid related-grid">
-                {% for post in collections.writeups | reverse %}
-                    <!-- Filter: Kategori sama dan bukan artikel yang sedang dibaca -->
-                    {% if post.data.category == category and post.url != page.url %}
-                        <a href="{{ post.url }}" class="card-link">
-                            <div class="card">
-                                <span class="category-badge">{{ post.data.category }}</span>
-                                <h3>{{ post.data.title }}</h3>
-                            </div>
-                        </a>
-                    {% endif %}
-                {% endfor %}
-            </div>
-        </div>
-    </aside>
-
-    <!-- FOOTER -->
-    <footer class="writeup-footer">
-        <div class="social-icons">
-            <a href="https://github.com/reyluchaabiell" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/reylucha-biel/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-            <a href="https://www.instagram.com/reylucha_biel/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="mailto:biellreyluchaa@gmail.com" title="Gmail"><i class="fas fa-envelope"></i></a>
-        </div>
-        <p style="margin-bottom: 50px; text-align: justify;"><strong style="color: red;">Disclaimer:</strong>  All information, techniques, and Proof of Concept (PoC) on this website are intended solely for educational and security research purposes. The author is not responsible for any misuse of this information.</p>
-            <hr style="color: #F4EB6C;">
-            <p style="margin-top: 10px;">&copy; 2026 Reylucha Biel / Cybersecurity Journey. All rights reserved.</p>
-    </footer>
-
-</body>
-</html>
+        {% endfor %}
+    </div>
+</aside>
+{% endif %}
